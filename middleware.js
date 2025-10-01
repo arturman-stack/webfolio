@@ -24,6 +24,15 @@ export async function getLocale(request) {
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
 
+  // Skip next internals
+  if (
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/api') ||
+    pathname === '/favicon.ico'
+  ) {
+    return NextResponse.next();
+  }
+
   // Check if there is any supported locale in the pathname
   const pathnameIsMissingLocale = i18nConfig.locales.every(
       (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
