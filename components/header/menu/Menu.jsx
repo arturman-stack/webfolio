@@ -19,7 +19,7 @@ const Menu = ({data}) => {
               <li key={id} className="h-full flex justify-center items-center">
                 <Link href={link || `#`} className={`group h-[.9vw] flex items-center text-black-500 no-underline ${currentPathname === `/${title}` ? 'text-gray-600' : 'text-white-600'}`}>
                   <span className="relative h-[.9vw] overflow-hidden">
-                    <span className="flex flex-col transition-transform duration-700 ease-[ease] group-hover:-translate-y-[.9vw] cursor-pointer">
+                    <span className="flex flex-col transition-transform duration-700 ease group-hover:-translate-y-[.9vw] cursor-pointer">
                       <span
                         className="block text-[.9vw] font-normal leading-[.9vw] origin-right transition-transform duration-700 group-hover:rotate-[20deg] cursor-pointer">
                         {title}
