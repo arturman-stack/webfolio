@@ -7,7 +7,6 @@ import {FaLinkedin} from "react-icons/fa";
 
 const About = ({data}) => {
 	const {about} = data;
-	console.log(about, 'about');
 
 	return (
 		<div className="relative overflow-hidden h-screen">
