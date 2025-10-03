@@ -1,49 +1,55 @@
-import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
-import { i18nConfig } from './i18nConfig';
+import {NextResponse} from 'next/server';
+import {i18nConfig} from './i18nConfig';
+import {cookies} from 'next/headers';
+import {match as matchLocale} from '@formatjs/intl-localematcher';
+import Negotiator from 'negotiator';
 
-function getLocale(request) {
-	const cookieStore = cookies(); // sync in Edge
-	const lang = cookieStore.get('NEXT_LOCALE')?.value;
+export async function getLocale(request) {
+  // Negotiator expects plain object, so we need to transform headers
+  const negotiatorHeaders = {};
 
-	const { locales, defaultLocale } = i18nConfig;
+  const cookieStore = await cookies();
+  const lang = cookieStore.get('NEXT_LOCALE')?.value;
 
-	// 1️⃣ Cookie check
-	if (lang && locales.includes(lang)) return lang;
+  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
-	// 2️⃣ Browser Accept-Language
-	const acceptLang = request.headers.get('accept-language') || '';
-	const browserLang = acceptLang.split(',')[0].split('-')[0];
-	if (locales.includes(browserLang)) return browserLang;
+  // @ts-ignore locales are readonly
+  const { locales } = i18nConfig;
 
-	// 3️⃣ Fallback
-	return defaultLocale;
+  // Use negotiator and intl-localeMatcher to get best locale
+  new Negotiator({ headers: negotiatorHeaders }).languages(locales);
+  return matchLocale(lang || 'en', locales, i18nConfig.defaultLocale)
 }
 
-export function middleware(request) {
-	try {
-		const { pathname } = request.nextUrl;
+export async function middleware(request) {
+  const { pathname } = request.nextUrl;
 
-		// Skip paths that already have a locale
-		const missingLocale = i18nConfig.locales.every(
-			(locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-		);
+  // Check if there is any supported locale in the pathname
+  const pathnameIsMissingLocale = i18nConfig.locales.every(
+      (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  );
 
-		if (missingLocale) {
-			const locale = getLocale(request);
+  // Redirect if there is no locale
+  if (pathnameIsMissingLocale) {
+    const locale = await getLocale(request); // Ensure `getLocale` is awaited
 
-			return NextResponse.redirect(
-				new URL(`/${locale}${pathname}`, request.url)
-			);
-		}
+    if (locale === i18nConfig.defaultLocale) {
+      return NextResponse.rewrite(
+          new URL(
+              `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
+              request.url
+          )
+      );
+    }
 
-		return NextResponse.next();
-	} catch (err) {
-		// Return error message so Vercel shows the real crash
-		return new NextResponse("Middleware crash: " + err.message, { status: 500 });
-	}
+    // Redirect to the correct locale-based URL
+    return NextResponse.redirect(
+        new URL(`/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url)
+    );
+  }
 }
 
 export const config = {
-	matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  // Matcher ignoring `/_next/` and `/api/`
+  // matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
