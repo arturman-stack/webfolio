@@ -1,55 +1,50 @@
-import {NextResponse} from 'next/server';
-import {i18nConfig} from './i18nConfig';
-import {cookies} from 'next/headers';
-import {match as matchLocale} from '@formatjs/intl-localematcher';
-import Negotiator from 'negotiator';
+import { NextResponse } from 'next/server';
+import { i18nConfig } from './i18nConfig';
+import { cookies } from 'next/headers';
+import { match as matchLocale } from '@formatjs/intl-localematcher';
 
-export async function getLocale(request) {
-  // Negotiator expects plain object, so we need to transform headers
-  const negotiatorHeaders = {};
-
-  const cookieStore = await cookies();
+function getLocale(request) {
+  const cookieStore = cookies();
   const lang = cookieStore.get('NEXT_LOCALE')?.value;
 
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
+  // Collect Accept-Language from headers
+  const acceptLanguage = request.headers.get('accept-language') || '';
 
-  // @ts-ignore locales are readonly
-  const { locales } = i18nConfig;
+  // Extract browser-preferred languages
+  const preferred = acceptLanguage
+    .split(',')
+    .map(l => l.split(';')[0].trim());
 
-  // Use negotiator and intl-localeMatcher to get best locale
-  new Negotiator({ headers: negotiatorHeaders }).languages(locales);
-  return matchLocale(lang || 'en', locales, i18nConfig.defaultLocale)
+  const { locales, defaultLocale } = i18nConfig;
+
+  // Match cookie first, fallback to browser, fallback to default
+  return matchLocale(
+    [lang, ...preferred].filter(Boolean),
+    locales,
+    defaultLocale
+  );
 }
 
-export async function middleware(request) {
+export function middleware(request) {
   const { pathname } = request.nextUrl;
 
-  // Check if there is any supported locale in the pathname
+  // Skip paths that already include a locale
   const pathnameIsMissingLocale = i18nConfig.locales.every(
-      (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
 
-  // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
-    const locale = await getLocale(request); // Ensure `getLocale` is awaited
+    const locale = getLocale(request);
 
-    if (locale === i18nConfig.defaultLocale) {
-      return NextResponse.rewrite(
-          new URL(
-              `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
-              request.url
-          )
-      );
-    }
-
-    // Redirect to the correct locale-based URL
+    // Redirect to the locale-prefixed path
     return NextResponse.redirect(
-        new URL(`/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url)
+      new URL(`/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url)
     );
   }
+
+  return NextResponse.next();
 }
 
 export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
