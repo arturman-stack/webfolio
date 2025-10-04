@@ -6,14 +6,19 @@ import {checkWindow} from "@/utils/GlobalWindow";
 import {usePathname, useRouter} from "next/navigation";
 import {useTranslation} from "react-i18next";
 import LanguagesSkeleton from "@/components/ui/skeletons/languages/LanguagesSkeleton";
+import {useLinkStatus} from "next/link";
+import {AiOutlineLoading3Quarters} from "react-icons/ai";
 
 function Languages() {
 	const {i18n} = useTranslation();
 	const locale = i18n.language;
 	const [open, setOpen] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const [activeLang, setActiveLang] = useState(null);
 	const currentPathname = usePathname();
 	const router = useRouter();
+	const {pending} = useLinkStatus();
+	console.log(pending, 'loading');
 
 	// Close dropdown on outside click
 	useEffect(() => {
@@ -51,12 +56,18 @@ function Languages() {
 		router.refresh();
 	}
 
-	const handleLanguageChange = (lang) => {
+	const handleLanguageChange = async (lang) => {
+		setLoading(true);
 		setActiveLang(lang);
 		setOpen(false);
 
 		// TODO: add your locale switch logic here (e.g. router.push or i18n.changeLanguage)
-		handleChange(lang?.slug, lang?.id);
+		try {
+			await handleChange(lang?.slug, lang?.id);
+		} finally {
+			// Give router time to refresh before hiding loading
+			setTimeout(() => setLoading(false), 3000);
+		}
 	};
 
 	return (
@@ -67,15 +78,17 @@ function Languages() {
 					onClick={() => setOpen(!open)}
 					className={`flex items-center gap-[.5vw] p-[.5vw] rounded-full duration-300 hover:bg-gray-100/20 transition ${open ? "bg-gray-100/20" : "bg-gray-100/10"}`}
 				>
-					<Image
-						src={activeLang?.image}
-						alt={activeLang?.slug}
-						width={250}
-						height={250}
-						className="w-[2vw] h-[2vw] min-w-[28px] min-h-[28px] rounded-full object-cover"
-					/>
-					<span className="text-[1vw] mr-[.5vw] font-medium text-white-100">{activeLang?.slug.toUpperCase()}</span>
-					{/*<div className="w-4 h-[2px] bg-black relative before:content-[''] before:absolute before:w-4 before:h-[2px] before:bg-black before:-top-2 after:content-[''] after:absolute after:w-4 after:h-[2px] after:bg-black after:top-2"></div>*/}
+					{loading ? <AiOutlineLoading3Quarters className="w-[2vw] h-[2vw] text-gray-100 animate-spin"/> : (
+						<Image
+							src={activeLang?.image}
+							alt={activeLang?.slug}
+							width={250}
+							height={250}
+							className="w-[2vw] h-[2vw] min-w-[2vw] min-h-[2vw] rounded-full object-cover"
+						/>
+					)}
+					<span
+						className={`text-[1vw] mr-[.5vw] font-medium text-white-100 ${loading ? "blur-[3px]" : ""}`}>{activeLang?.slug.toUpperCase()}</span>
 				</button>
 			)}
 			{/* Dropdown */}

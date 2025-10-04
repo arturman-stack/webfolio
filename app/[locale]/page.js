@@ -12,9 +12,6 @@ export default function Home() {
     <main>
       <Header data={{menu}}/>
       <About data={{ about }} />
-      <Case data={{caseData}} />
-      <Technologies data={{technologies}} />
-
     </main>
   );
 };
