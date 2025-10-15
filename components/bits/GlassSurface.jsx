@@ -18,27 +18,28 @@ const useDarkMode = () => {
 };
 
 const GlassSurface = ({
-  children,
-  width = 200,
-  height = 80,
-  borderRadius = 100,
-  borderWidth = 0.07,
-  brightness = 50,
-  opacity = 0.93,
-  blur = 24,
-  displace = 0,
-  backgroundOpacity = 0,
-  saturation = 1,
-  distortionScale = -180,
-  redOffset = 0,
-  greenOffset = 10,
-  blueOffset = 20,
-  xChannel = 'R',
-  yChannel = 'G',
-  mixBlendMode = 'difference',
-  className = '',
-  style = {}
-}) => {
+                        children,
+                        width = 200,
+                        height = 80,
+                        borderRadius = 20,
+                        borderWidth = 0.07,
+                        brightness = 50,
+                        opacity = 0.93,
+                        blur = 11,
+                        displace = 0,
+                        backgroundOpacity = 0,
+                        saturation = 1,
+                        distortionScale = -180,
+                        redOffset = 0,
+                        greenOffset = 10,
+                        blueOffset = 20,
+                        xChannel = 'R',
+                        yChannel = 'G',
+                        mixBlendMode = 'difference',
+                        className = '',
+                        childrenClassName = '',
+                        style = {}
+                      }) => {
   const uniqueId = useId().replace(/:/g, '-');
   const filterId = `glass-filter-${uniqueId}`;
   const redGradId = `red-grad-${uniqueId}`;
@@ -50,7 +51,6 @@ const GlassSurface = ({
   const greenChannelRef = useRef(null);
   const blueChannelRef = useRef(null);
   const gaussianBlurRef = useRef(null);
-
 
   const isDarkMode = useDarkMode();
 
@@ -257,7 +257,7 @@ const GlassSurface = ({
   };
 
   const glassSurfaceClasses =
-    'relative flex items-center justify-center overflow-hidden transition-opacity duration-300 ease-out';
+    'relative flex items-center justify-center transition-opacity duration-[260ms] ease-out';
 
   const focusVisibleClasses = isDarkMode
     ? 'focus-visible:outline-2 focus-visible:outline-[#0A84FF] focus-visible:outline-offset-2'
@@ -267,33 +267,17 @@ const GlassSurface = ({
     <div
       ref={containerRef}
       className={`${glassSurfaceClasses} ${focusVisibleClasses} ${className}`}
-      style={getContainerStyles()}>
+      style={getContainerStyles()}
+    >
       <svg
         className="w-full h-full pointer-events-none absolute inset-0 opacity-0 -z-10"
-        xmlns="http://www.w3.org/2000/svg">
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <defs>
-          <filter
-            id={filterId}
-            colorInterpolationFilters="sRGB"
-            x="0%"
-            y="0%"
-            width="100%"
-            height="100%">
-            <feImage
-              ref={feImageRef}
-              x="0"
-              y="0"
-              width="100%"
-              height="100%"
-              preserveAspectRatio="none"
-              result="map" />
+          <filter id={filterId} colorInterpolationFilters="sRGB" x="0%" y="0%" width="100%" height="100%">
+            <feImage ref={feImageRef} x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map" />
 
-            <feDisplacementMap
-              ref={redChannelRef}
-              in="SourceGraphic"
-              in2="map"
-              id="redchannel"
-              result="dispRed" />
+            <feDisplacementMap ref={redChannelRef} in="SourceGraphic" in2="map" id="redchannel" result="dispRed" />
             <feColorMatrix
               in="dispRed"
               type="matrix"
@@ -301,14 +285,16 @@ const GlassSurface = ({
                       0 0 0 0 0
                       0 0 0 0 0
                       0 0 0 1 0"
-              result="red" />
+              result="red"
+            />
 
             <feDisplacementMap
               ref={greenChannelRef}
               in="SourceGraphic"
               in2="map"
               id="greenchannel"
-              result="dispGreen" />
+              result="dispGreen"
+            />
             <feColorMatrix
               in="dispGreen"
               type="matrix"
@@ -316,14 +302,10 @@ const GlassSurface = ({
                       0 1 0 0 0
                       0 0 0 0 0
                       0 0 0 1 0"
-              result="green" />
+              result="green"
+            />
 
-            <feDisplacementMap
-              ref={blueChannelRef}
-              in="SourceGraphic"
-              in2="map"
-              id="bluechannel"
-              result="dispBlue" />
+            <feDisplacementMap ref={blueChannelRef} in="SourceGraphic" in2="map" id="bluechannel" result="dispBlue" />
             <feColorMatrix
               in="dispBlue"
               type="matrix"
@@ -331,7 +313,8 @@ const GlassSurface = ({
                       0 0 0 0 0
                       0 0 1 0 0
                       0 0 0 1 0"
-              result="blue" />
+              result="blue"
+            />
 
             <feBlend in="red" in2="green" mode="screen" result="rg" />
             <feBlend in="rg" in2="blue" mode="screen" result="output" />
@@ -339,8 +322,7 @@ const GlassSurface = ({
           </filter>
         </defs>
       </svg>
-      <div
-        className="w-full h-full flex items-center justify-center p-2 rounded-[inherit] relative z-10">
+      <div className={`w-max h-max flex items-center justify-center !relative z-10 ${childrenClassName}`}>
         {children}
       </div>
     </div>

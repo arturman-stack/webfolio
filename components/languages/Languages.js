@@ -8,6 +8,7 @@ import {usePathname, useRouter} from "next/navigation";
 import {useTranslation} from "react-i18next";
 import LanguagesSkeleton from "@/components/ui/skeletons/languages/LanguagesSkeleton";
 import {AiOutlineLoading3Quarters} from "react-icons/ai";
+import GlassSurface from "@/components/bits/GlassSurface";
 
 function Languages() {
 	const {i18n} = useTranslation();
@@ -89,18 +90,18 @@ function Languages() {
 				</button>
 			)}
 			{/* Dropdown */}
-			<div
-				className={`absolute left-0 mt-[1vw] w-max h-max rounded-[1.5vw] border-[.1vw] border-[#ffffff26] bg-white-100/15 backdrop-blur shadow-lg overflow-hidden transform transition-all duration-300 ${
-					open ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
-				}`}
+			<GlassSurface
+				className={`!absolute left-0 mt-[1vw] !w-max !h-max !rounded-[1.5vw] transform transition-all duration-300 ${
+					open ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}`}
+				childrenClassName={`!w-max !h-max !rounded-[1.5vw] overflow-hidden transform transition-all duration-300 flex-col`}
 			>
 				{languages
-					.filter((lang) => lang.id !== activeLang?.id)
-					.map((lang) => (
+					?.filter((lang) => lang.id !== activeLang?.id)
+					?.map((lang) => (
 						<button
 							key={lang?.id}
 							onClick={() => handleLanguageChange(lang)}
-							className="flex items-center gap-[.5vw] p-[.5vw] w-full hover:bg-gray-100/20 transition"
+							className="flex items-center gap-[.5vw] p-[.5vw] w-full hover:bg-gray-100/20 transition rounded-xl first:rounded-b-none last:rounded-t-none"
 						>
 							<Image
 								src={lang?.image}
@@ -112,7 +113,7 @@ function Languages() {
 							<span className="text-[1vw] mr-[.5vw] font-medium text-white-100">{lang?.slug.toUpperCase()}</span>
 						</button>
 					))}
-			</div>
+			</GlassSurface>
 		</div>
 	);
 }
