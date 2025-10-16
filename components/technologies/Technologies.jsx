@@ -18,7 +18,7 @@ function Technologies({data}) {
           isTilted={true}
           tiltDirection='left'
           autoplay={true}
-          autoplaySpeed={0.8}
+          autoplaySpeed={3}
           autoplayDirection="down"
           pauseOnHover={true}
           width="max-content"
