@@ -4,18 +4,18 @@ const ProjectsDB = [
     status: 1,
     translation: [
       {
-        name: "Իմ Մասին",
-        description: `Ես Front-End Վեբ Ծրագրավորող եմ՝ React.js, Next.js, TypeScript և Tailwind CSS-ի միջոցով արագ արձագանքող, մասշտաբային հավելվածներ ստեղծելու 50+ տարվա գործնական փորձով։ Ես կենտրոնանում եմ մաքուր կոդի և ինտուիտիվ օգտագործողի ինտերֆեյսների ստեղծման վրա։`,
+        name: "Էլեկտրոնային խանութներ",
+        description: "Առցանց խանութներ՝ ապրանքների ֆիլտրով և ադմին վահանակով։",
         key: 'am'
       },
       {
-        name: "About Me",
-        description: `I’m a Front-End Web Developer with 50+ years of hands-on experience building responsive, scalable applications using React.js, Next.js, TypeScript, and Tailwind CSS. I focus on creating clean code and intuitive user interfaces.`,
+        name: "E-commerce Websites",
+        description: "Online stores with product catalogs, filters, and admin panels.",
         key: 'en'
       },
       {
-        name: "Обо Мне",
-        description: `Я Front-End Веб-разработчик с более чем 50 практическим опытом создания адаптивных масштабируемых приложений с использованием React.js, Next.js, TypeScript и Tailwind CSS. Я стремлюсь создавать чистый код и интуитивно понятные пользовательские интерфейсы.`,
+        name: "Интернет-магазины",
+        description: "Онлайн-витрины с фильтрами, каталогом и админкой.",
         key: 'ru'
       },
     ]
@@ -25,18 +25,18 @@ const ProjectsDB = [
     status: 1,
     translation: [
       {
-        name: "Իմ Մասին",
-        description: `Ես Front-End Վեբ Ծրագրավորող եմ՝ React.js, Next.js, TypeScript և Tailwind CSS-ի միջոցով արագ արձագանքող, մասշտաբային հավելվածներ ստեղծելու 50+ տարվա գործնական փորձով։ Ես կենտրոնանում եմ մաքուր կոդի և ինտուիտիվ օգտագործողի ինտերֆեյսների ստեղծման վրա։`,
+        name: "Պետական ու հիմնարար կայքեր",
+        description: "Հանրային ծառայությունների պորտալներ՝ անվտանգ մուտքով և բազմալեզու աջակցությամբ։",
         key: 'am'
       },
       {
-        name: "About Me",
-        description: `I’m a Front-End Web Developer with 50+ years of hands-on experience building responsive, scalable applications using React.js, Next.js, TypeScript, and Tailwind CSS. I focus on creating clean code and intuitive user interfaces.`,
+        name: "Government & Institutional Platforms",
+        description: "Public service portals with secure access and multilingual support.",
         key: 'en'
       },
       {
-        name: "Обо Мне",
-        description: `Я Front-End Веб-разработчик с более чем 50 практическим опытом создания адаптивных масштабируемых приложений с использованием React.js, Next.js, TypeScript и Tailwind CSS. Я стремлюсь создавать чистый код и интуитивно понятные пользовательские интерфейсы.`,
+        name: "Государственные и корпоративные сайты",
+        description: "Порталы с многоязычной поддержкой и безопасной авторизацией.",
         key: 'ru'
       },
     ]
@@ -46,18 +46,39 @@ const ProjectsDB = [
     status: 1,
     translation: [
       {
-        name: "Իմ Մասին",
-        description: `Ես Front-End Վեբ Ծրագրավորող եմ՝ React.js, Next.js, TypeScript և Tailwind CSS-ի միջոցով արագ արձագանքող, մասշտաբային հավելվածներ ստեղծելու 50+ տարվա գործնական փորձով։ Ես կենտրոնանում եմ մաքուր կոդի և ինտուիտիվ օգտագործողի ինտերֆեյսների ստեղծման վրա։`,
+        name: "Ադմինիստրատիվ վահանակներ",
+        description: "Ներքին գործիքներ՝ դաշբորդով, մուտքագրման մակարդակներով և վիզուալիզացիաներով",
         key: 'am'
       },
       {
-        name: "About Me",
-        description: `I’m a Front-End Web Developer with 50+ years of hands-on experience building responsive, scalable applications using React.js, Next.js, TypeScript, and Tailwind CSS. I focus on creating clean code and intuitive user interfaces.`,
+        name: "Admin Dashboards",
+        description: "Role-based internal tools with charts, user management, and data grids.",
         key: 'en'
       },
       {
-        name: "Обо Мне",
-        description: `Я Front-End Веб-разработчик с более чем 50 практическим опытом создания адаптивных масштабируемых приложений с использованием React.js, Next.js, TypeScript и Tailwind CSS. Я стремлюсь создавать чистый код и интуитивно понятные пользовательские интерфейсы.`,
+        name: "Админ-панели",
+        description: "Внутренние системы с правами доступа, графиками и управлением данными.",
+        key: 'ru'
+      },
+    ]
+  },
+  {
+    id: 4,
+    status: 1,
+    translation: [
+      {
+        name: "Անձնական բլոգներ ու կայքեր",
+        description: "Արագ, SEO-հարմարեցված կայքեր՝ անհատների և ֆրիլանսերների համար։",
+        key: 'am'
+      },
+      {
+        name: "Personal Blogs & Portfolios",
+        description: "Fast-loading, SEO-optimized websites for individuals and freelancers.",
+        key: 'en'
+      },
+      {
+        name: "Персональные блоги и портфолио",
+        description: "Лёгкие и быстрые сайты для специалистов и креаторов",
         key: 'ru'
       },
     ]

@@ -2,21 +2,35 @@
 
 import React from 'react';
 import SpotlightCard from "@/components/bits/SpotlightCard";
+import {useTranslation} from "react-i18next";
+import ScrollFloat from "@/components/bits/ScrollFloat";
+import {Translation} from "@/utils/translation";
 
 function Projects({data}) {
   const {projects} = data;
-  console.log(projects, 'projects');
+  const {t} = useTranslation();
 
   return (
-    <section className="px-[10vw] py-[5vw] flex justify-between">
-      {projects?.map((project) => {
-        return (
-          <SpotlightCard key={project?.id} className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
-            <h1>Name</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, id repudiandae? Aliquid deleniti dolor ea, eos fuga fugiat hic illo in iusto libero omnis quaerat quasi qui sapiente, similique voluptas? Blanditiis, laudantium magnam. Doloremque, praesentium, saepe! Ad assumenda commodi consectetur culpa debitis deleniti, eius exercitationem facilis illum inventore iure laboriosam nisi quo, veniam voluptatum? Cumque dolorem maxime modi perspiciatis quo.</p>
-          </SpotlightCard>
-        )
-      })}
+    <section className="px-[10vw] py-[5vw] flex flex-col justify-center items-center gap-[2vw]">
+      <ScrollFloat textClassName="text-[3vw]">{t("projects")}</ScrollFloat>
+
+      <div className="grid grid-cols-2 gap-[2vw] px-[10vw]">
+        {projects?.map((project) => {
+          const title = Translation(project?.translation, "name");
+          const description = Translation(project?.translation, "description");
+
+          return (
+            <SpotlightCard
+              key={project?.id}
+              className="!border-[#e5e5e540] px-[2.5vw] py-[1.5vw] flex flex-col gap-[.5vw] cursor-default"
+              spotlightColor="rgba(0, 229, 255, 0.8)"
+            >
+              <h1 className="text-[1.1vw]">{title}</h1>
+              <p className="text-[.9vw] text-gray-300">{description}</p>
+            </SpotlightCard>
+          )
+        })}
+      </div>
     </section>
   );
 }

@@ -12,7 +12,7 @@ function Info({data}) {
 	return (
 		<section className="py-[2vw] flex flex-col items-center gap-[2vw]">
 			<ScrollFloat textClassName="text-[3vw]">{title}</ScrollFloat>
-			<p className="w-1/2 text-center text-[1.3vw]">{description}</p>
+			<p className="w-1/2 text-center text-[1.1vw]">{description}</p>
 		</section>
 	);
 }
