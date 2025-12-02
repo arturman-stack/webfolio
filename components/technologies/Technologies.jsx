@@ -11,7 +11,7 @@ function Technologies({data}) {
   const {technologies, websites} = data;
 
   return (
-    <section className="flex justify-between">
+    <section className="flex justify-between" id="skills">
       <div className="w-[30vw] h-[30vw]">
         <InfiniteScroll
           items={technologies}
@@ -40,7 +40,7 @@ function Technologies({data}) {
             return (
               <Card key={website?.id} customClass="overflow-hidden">
                 <Link href={href} target="_blank" className="w-full h-full flex flex-col">
-                  <div className="w-full text-[.8vw] px-[.5vw] py-[.2vw] bg-black-500 border-b border-b-white-500/30">
+                  <div className="w-full text-[.7vw] px-[.7vw] py-[.2vw] bg-black-500 border-b border-b-white-500/30">
                     {website?.title}
                   </div>
                   <div className="w-full h-[calc(100%-1.3vw)]" title={title}>

@@ -13,15 +13,23 @@ const About = ({data}) => {
 	const title = Translation(about?.translation, "name");
 	const description = Translation(about?.translation, "description");
 
-	const handleDownloadCV = () => {
-		const link = document.createElement("a");
-		link.href = "/documents/Artur_Mrteyan_CV.pdf"; // path in public folder
-		link.download = "Artur_Mrteyan_CV.pdf"; // default filename
-		link.click();
+	const handleDownloadCV = async () => {
+		const response = await fetch("/documents/Artur_Mrteyan_CV.pdf");
+		if (response.status !== 200) {
+			console.log("Download CV Failed");
+			return;
+		}
+
+		const blob = await response.blob();
+		const url = URL.createObjectURL(blob);
+		const a = document.createElement("a");
+		a.href = url;
+		a.download = "Artur_Mrteyan_CV.pdf";
+		a.click();
 	};
 
 	return (
-		<section className="relative h-[45vw]">
+		<section className="relative h-[45vw]" id="about">
 			<LightRays/>
 			<div className="absolute w-full h-full flex flex-col justify-center items-center gap-[1vw] top-0 left-0 z-10">
 				<SplitText text={title} className="text-[4vw] font-bold" />

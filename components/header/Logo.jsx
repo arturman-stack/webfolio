@@ -5,7 +5,7 @@ import Link from "next/link";
 import FrontImage from "@/components/ui/images/FrontImage";
 import logo from "@/public/assets/images/logo_main.png";
 
-const Logo = ({data}) => {
+const Logo = () => {
   return (
     <Link href={"/"} className="w-[3vw] h-[3vw] flex items-center text-primary-500 font-bold text-[2.5vw]">
       <FrontImage

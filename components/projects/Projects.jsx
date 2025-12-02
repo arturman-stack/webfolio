@@ -11,7 +11,7 @@ function Projects({data}) {
   const {t} = useTranslation();
 
   return (
-    <section className="px-[10vw] py-[5vw] flex flex-col justify-center items-center gap-[2vw]">
+    <section className="px-[10vw] py-[5vw] flex flex-col justify-center items-center gap-[2vw]" id="projects">
       <ScrollFloat textClassName="text-[3vw]">{t("projects")}</ScrollFloat>
 
       <div className="grid grid-cols-2 gap-[2vw] px-[10vw]">

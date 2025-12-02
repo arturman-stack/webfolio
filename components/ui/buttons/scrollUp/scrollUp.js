@@ -2,7 +2,6 @@
 
 import React, {useEffect, useState} from 'react';
 import {FaArrowUp} from "react-icons/fa";
-import {checkWindow} from "@/utils/GlobalWindow";
 
 function ScrollUp() {
   const [scrollUp, setScrollUp] = useState(false);

@@ -12,7 +12,7 @@ const menu = [
     },
     {
         id: 2,
-        link: "#skills  ",
+        link: "#skills",
         status: 1,
         slug: "#skills",
         translation: [

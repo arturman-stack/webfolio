@@ -8,7 +8,7 @@ import tumanyanshaurma_ru from "@/images/websites/tumanyanshaurma/tumanyanshaurm
 const websites = [
   {
     id: 1,
-    title: "karas.am",
+    title: "https://www.karas.am",
     translation: [
       {
         title: "Կարաս",
@@ -32,7 +32,7 @@ const websites = [
   },
   {
     id: 2,
-    title: "tumanyanshaurma.am",
+    title: "https://tumanyanshaurma.am",
     translation: [
       {
         title: "Թումանյան Շաուրմա",
