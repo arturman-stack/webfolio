@@ -21,6 +21,7 @@ export default async function RootLayout({children, params}) {
 		<TranslationsProvider resources={resources} locale={locale} namespaces={i18nNamespaces}>
 			<html lang="en">
 			<head>
+				<meta name="theme-color" content="#000000" />
 				<link rel="preconnect" href="https://fonts.googleapis.com"/>
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 				<link
