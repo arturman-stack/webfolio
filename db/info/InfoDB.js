@@ -1,4 +1,4 @@
-const startDate = new Date(2023, 11, 1); // 01.12.2023 (months 0-based)
+const startDate = new Date(2022, 11, 1); // 01.12.2023 (months 0-based)
 
 function getYearsFlooredToHalf_byMs(start = startDate, now = new Date()) {
 	const msInYear = 1000 * 60 * 60 * 24 * 365.25; // accounts for leap years roughly

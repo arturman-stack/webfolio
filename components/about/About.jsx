@@ -3,53 +3,42 @@
 import React from 'react';
 import LightRays from "@/components/bits/LightRays";
 import Link from "next/link";
-import {FaLinkedin} from "react-icons/fa";
-import {FaDownload} from "react-icons/fa6";
+import {FaLinkedin, FaTelegram} from "react-icons/fa";
 import {Translation} from "@/utils/translation";
 import SplitText from "@/components/bits/SplitText";
+import Line from "@/components/ui/Line";
 
 const About = ({data}) => {
 	const {about} = data;
 	const title = Translation(about?.translation, "name");
 	const description = Translation(about?.translation, "description");
 
-	const handleDownloadCV = async () => {
-		const response = await fetch("/documents/Artur_Mrteyan_CV.pdf");
-		if (response.status !== 200) {
-			console.log("Download CV Failed");
-			return;
-		}
-
-		const blob = await response.blob();
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement("a");
-		a.href = url;
-		a.download = "Artur_Mrteyan_CV.pdf";
-		a.click();
-	};
-
 	return (
-		<section className="relative h-[45vw]" id="about">
+		<section className="relative flex justify-center h-[45.5vw] mobile:h-[100vw]" id="about">
 			<LightRays/>
-			<div className="absolute w-full h-full flex flex-col justify-center items-center gap-[1vw] top-0 left-0 z-10">
-				<SplitText text={title} className="text-[4vw] font-bold" />
-				<p className="text-[1.2vw]">{description}</p>
-				<div className="flex items-center gap-[2vw] mt-[4vw]">
+			<div className="absolute w-full h-full flex flex-col justify-center items-center px-[10%] gap-[1vw] top-0 left-0 z-10 mobile:gap-[2vw]">
+				<SplitText text={title} className="text-[4vw] font-bold mobile:text-[8vw]" />
+				<p className="text-[1.2vw] text-center mobile:text-[3.5vw]">{description}</p>
+				<div className="flex items-center gap-[2vw] mt-[4vw] mobile:gap-[3vw] mobile:mt-[5vw]">
 					<Link
 						target="_blank"
 						href="https://www.linkedin.com/in/arturmrteyan"
-						className="px-[2vw] py-[1vw] text-[1.2vw] bg-blue-linked-in font-bold rounded-full flex items-center duration-300 hover:ring-2 hover:ring-white-500"
+						className="px-[2vw] py-[1vw] text-[1.2vw] bg-blue-linked-in font-bold rounded-full flex items-center duration-300 hover:ring-2 hover:ring-white-500 mobile:text-[4vw] mobile:px-[4vw] mobile:py-[2vw]"
 					>
 						Linked <FaLinkedin/>
 					</Link>
-					<button
-						onClick={handleDownloadCV}
-						className="px-[2vw] py-[1vw] text-[1.2vw] bg-gray-500/10 rounded-full flex items-center gap-[.5vw] duration-300 hover:ring-2 hover:ring-white-500"
+					<Link
+						target="_blank"
+						href="https://t.me/arturmangg"
+						className="px-[2vw] py-[1vw] text-[1.2vw] bg-blue-telegram font-bold rounded-full flex items-center gap-1 duration-300 hover:ring-2 hover:ring-white-500 mobile:text-[4vw] mobile:px-[4vw] mobile:py-[2vw]"
 					>
-						<FaDownload /> Download CV
-					</button>
+						<FaTelegram/> Telegram
+					</Link>
 				</div>
 			</div>
+
+			{/* Line Gradient Style */}
+			<Line />
 		</section>
 	);
 };

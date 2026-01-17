@@ -8,8 +8,8 @@ import CreativeLoop from "@/components/ui/CreativeLoop";
 import Projects from "@/components/projects/Projects";
 import projects from "@/db/projects/ProjectsDB";
 import Technologies from "@/components/technologies/Technologies";
-import technologies from "@/db/technologies/TechnologiesDB";
-import websites from "@/db/websites/WebsitesDB";
+import {technologies, technologiesDB} from "@/db/technologies/TechnologiesDB";
+import Contact from "@/components/contact/Contact";
 
 const title_am = "Արթուր Մրտեյան";
 const title_en = "Arthur Mrteyan";
@@ -28,7 +28,8 @@ export default function Home() {
       <About data={{ about }} />
       <Info data={{ info }} />
       <Projects data={{ projects }} />
-      <Technologies data={{ technologies, websites }} />
+      <Technologies data={{ technologies, technologiesDB }} />
+      <Contact />
       <CreativeLoop />
     </main>
   );

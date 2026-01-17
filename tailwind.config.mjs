@@ -114,7 +114,8 @@ export default {
   		},
   		blue: {
   			'500': '#023957',
-				"linked-in": '#1268C0'
+				"linked-in": '#1268C0',
+				"telegram": '#0088cc'
   		},
   		category: {
   			'300': 'var(--categoryDark-color-500)',

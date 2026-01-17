@@ -10,7 +10,7 @@ const Header = ({data}) => {
   return (
     <header className="transition-[width] duration-300 fixed top-0 left-0 right-0 z-50 flex py-[1vw] justify-center items-center pointer-events-none">
       <GlassSurface
-        className="!w-max !h-max duration-300 mx-auto flex !rounded-full w-screen-sm items-center justify-between py-[.5vw] px-[.5vw] !relative pointer-events-auto"
+        className="!w-max !h-max duration-300 mx-auto flex !rounded-full w-screen-sm items-center justify-between py-[.5vw] px-[.5vw] !relative pointer-events-auto mobile:py-[2vw] mobile:px-[2vw]"
         childrenClassName="gap-[2vw]"
       >
         <Logo/>

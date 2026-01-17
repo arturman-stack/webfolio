@@ -74,24 +74,24 @@ function Languages() {
 			{!activeLang ? <LanguagesSkeleton/> : (
 				<button
 					onClick={() => setOpen(!open)}
-					className={`flex items-center gap-[.5vw] p-[.5vw] rounded-full duration-300 hover:bg-gray-100/20 transition ${open ? "bg-gray-100/20" : "bg-gray-100/10"}`}
+					className={`flex items-center gap-[.5vw] p-[.5vw] rounded-full duration-300 hover:bg-gray-100/20 transition mobile:gap-[2vw] mobile:p-[2vw] ${open ? "bg-gray-100/20" : "bg-gray-100/10"}`}
 				>
-					{loading ? <AiOutlineLoading3Quarters className="w-[2vw] h-[2vw] text-gray-100 animate-spin"/> : (
+					{loading ? <AiOutlineLoading3Quarters className="w-[2vw] h-[2vw] text-gray-100 animate-spin mobile:w-[6vw] mobile:h-[6vw]"/> : (
 						<Image
 							src={activeLang?.image}
 							alt={activeLang?.slug}
 							width={250}
 							height={250}
-							className="w-[2vw] h-[2vw] min-w-[2vw] min-h-[2vw] rounded-full object-cover"
+							className="w-[2vw] h-[2vw] min-w-[2vw] min-h-[2vw] rounded-full object-cover mobile:w-[6vw] mobile:h-[6vw] mobile:min-w-[6vw] mobile:min-h-[6vw]"
 						/>
 					)}
 					<span
-						className={`text-[1vw] mr-[.5vw] font-medium text-white-100 ${loading ? "blur-[3px]" : ""}`}>{activeLang?.slug.toUpperCase()}</span>
+						className={`text-[1vw] mr-[.5vw] font-medium text-white-100 mobile:text-[3vw] mobile:mr-[1vw] ${loading ? "blur-[3px]" : ""}`}>{activeLang?.slug.toUpperCase()}</span>
 				</button>
 			)}
 			{/* Dropdown */}
 			<GlassSurface
-				className={`!absolute left-0 mt-[1vw] !w-max !h-max !rounded-[1.5vw] transform transition-all duration-300 ${
+				className={`!absolute left-0 mt-[1vw] !w-max !h-max !rounded-2xl transform transition-all duration-300 mobile:mt-[3vw] ${
 					open ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}`}
 				childrenClassName={`!w-max !h-max !rounded-[1.5vw] overflow-hidden transform transition-all duration-300 flex-col`}
 			>
@@ -101,16 +101,16 @@ function Languages() {
 						<button
 							key={lang?.id}
 							onClick={() => handleLanguageChange(lang)}
-							className="flex items-center gap-[.5vw] p-[.5vw] w-full hover:bg-gray-100/20 transition rounded-xl first:rounded-b-none last:rounded-t-none"
+							className="flex items-center gap-[.5vw] p-[.5vw] w-full hover:bg-gray-100/20 transition rounded-xl first:rounded-b-none last:rounded-t-none mobile:gap-[2vw] mobile:p-[2vw]"
 						>
 							<Image
 								src={lang?.image}
 								alt={lang?.slug}
 								width={250}
 								height={250}
-								className="w-[2vw] h-[2vw] min-w-[2vw] min-h-[2vw] rounded-full object-cover"
+								className="w-[2vw] h-[2vw] min-w-[2vw] min-h-[2vw] rounded-full object-cover mobile:h-[6vw] mobile:min-w-[6vw] mobile:min-h-[6vw]"
 							/>
-							<span className="text-[1vw] mr-[.5vw] font-medium text-white-100">{lang?.slug.toUpperCase()}</span>
+							<span className="text-[1vw] mr-[.5vw] font-medium text-white-100 mobile:text-[3vw] mobile:mr-[1vw]">{lang?.slug.toUpperCase()}</span>
 						</button>
 					))}
 			</GlassSurface>

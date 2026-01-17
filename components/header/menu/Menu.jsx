@@ -63,15 +63,15 @@ const Menu = ({ data }) => {
                   className={`group h-[1vw] flex items-center text-black-500 no-underline 
                     ${isActive ? 'text-gray-600' : 'text-white-600'}`}
                 >
-                  <span className="relative h-[1vw] overflow-hidden">
+                  <span className="relative h-[1vw] overflow-hidden mobile:h-[3vw]">
                     <span
-                      className="flex flex-col transition-transform duration-700 ease group-hover:-translate-y-[1vw] cursor-pointer mix-blend-exclusion">
+                      className="flex flex-col transition-transform duration-700 ease group-hover:-translate-y-[1vw] cursor-pointer mix-blend-exclusion mobile:group-hover:-translate-y-[3vw]">
                       <span
-                        className="block text-[1vw] font-normal leading-[1vw] origin-right transition-transform duration-700 group-hover:rotate-[20deg] cursor-pointer">
+                        className="block text-[1vw] font-normal leading-[1vw] origin-right transition-transform duration-700 group-hover:rotate-[20deg] cursor-pointer mobile:text-[3vw] mobile:leading-[3vw]">
                         {title}
                       </span>
                       <span
-                        className="block text-[1vw] font-normal leading-[1vw] origin-left rotate-[20deg] transition-transform duration-700 group-hover:rotate-0 cursor-pointer">
+                        className="block text-[1vw] font-normal leading-[1vw] origin-left rotate-[20deg] transition-transform duration-700 group-hover:rotate-0 cursor-pointer mobile:text-[3vw] mobile:leading-[3vw]">
                         {title}
                       </span>
                     </span>

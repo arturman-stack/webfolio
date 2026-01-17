@@ -88,8 +88,6 @@ body {
   }
 }
 
-
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -146,8 +144,6 @@ body {
   }
 }
 
-
-
 @layer base {
   * {
     @apply border-border;
@@ -155,4 +151,20 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* line gradient */
+
+.styled-line-gradient{
+  background: linear-gradient(45deg, #000000, #00ffff, #ff00ff, #000000);
+}
+
+/* shake animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+.animate-shake {
+  animation: shake 0.5s;
 }

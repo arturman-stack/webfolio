@@ -1,7 +1,6 @@
 import {useRef, useEffect} from 'react';
 import {gsap} from 'gsap';
 import {Observer} from 'gsap/Observer';
-import {Translation} from "@/utils/translation";
 
 gsap.registerPlugin(Observer);
 
@@ -139,7 +138,7 @@ export default function InfiniteScroll({
           transform: getTiltTransform()
         }}>
         {items?.map((item, i) => {
-          return (
+          return !!item?.status && (
             <div
               className="flex flex-col items-center justify-center gap-[1vw] p-[1vw] text-[1vw] font-semibold text-center border border-white-500/20 rounded-[15px] select-none box-border relative"
               key={i}
