@@ -21,7 +21,7 @@ export async function getLocale(request) {
   return matchLocale(lang || 'en', locales, i18nConfig.defaultLocale)
 }
 
-export async function middleware(request) {
+export async function proxy(request) {
   const { pathname } = request.nextUrl;
 
   // Check if there is any supported locale in the pathname
