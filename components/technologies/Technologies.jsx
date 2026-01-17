@@ -17,7 +17,7 @@ function Technologies({data}) {
 				<ScrollFloat textClassName="text-[3vw] mobile:text-[6vw]">{title}</ScrollFloat>
 			</div>
 
-			<div className="w-[50vw] px-[5vw] pt-[12vw] flex flex-col items-center relative mobile:w-full mobile:px-[10%] mobile:pb-[10vw] mobile:pt-0">
+			<div className="w-[50vw] px-[5vw] pt-[12vw] flex flex-col items-center relative mobile:w-full mobile:px-[10%] mobile:pb-[10vw] mobile:pt-0 overflow-x-hidden">
 				<div className="grid grid-cols-1">
 					{categories?.map((category) => (
 						<div key={category?.id} className="rounded-2xl pt-6 shadow-sm mobile:pt-[3vw]">
