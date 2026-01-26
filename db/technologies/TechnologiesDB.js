@@ -49,13 +49,13 @@ export const technologies = [
 		icon: <BiLogoTypescript className={`${className} text-[#007acc]`}/>,
 		color: "text-[#007acc]"
 	},
-	{
-		id: 7,
-		status: 0,
-		name: "PHP",
-		icon: <GiElephant className={`${className} text-[#474A8A]`}/>,
-		color: "text-[#474A8A]"
-	},
+	// {
+	// 	id: 7,
+	// 	status: 1,
+	// 	name: "PHP",
+	// 	icon: <GiElephant className={`${className} text-[#474A8A]`}/>,
+	// 	color: "text-[#474A8A]"
+	// },
 	{
 		id: 8,
 		status: 1,
@@ -134,6 +134,7 @@ export const technologiesDB = {
 						"Git",
 						"REST API",
 						"Axios",
+						"Fetch",
 						"React Query",
 						"Vite",
 						"Webpack",
@@ -185,6 +186,7 @@ export const technologiesDB = {
 						"Git",
 						"REST API",
 						"Axios",
+						"Fetch",
 						"React Query",
 						"Vite",
 						"Webpack",
@@ -236,6 +238,7 @@ export const technologiesDB = {
 						"Git",
 						"REST API",
 						"Axios",
+						"Fetch",
 						"React Query",
 						"Vite",
 						"Webpack",

@@ -28,7 +28,7 @@ function ScrollUp() {
       <div
         onClick={handleScrollUp}
         className="w-[3vw] h-[3vw] fixed right-[1.5vw] bottom-[1.5vw] flex justify-center items-center
-          cursor-pointer bg-secondary-500 text-secondary-500 duration-500 z-[99999] rounded-full mix-blend-exclusion mobile:w-[10vw] mobile:h-[10vw]"
+          cursor-pointer bg-secondary-500 text-secondary-500 duration-500 z-[99999] rounded-full mix-blend-exclusion mobile:w-[10vw] mobile:h-[10vw] mobile:right-[2.5vw] mobile:bottom-[2.5vw]"
       >
         <FaArrowUp className="text-small mix-blend-exclusion mobile:text-[5vw]" />
       </div>

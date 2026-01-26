@@ -138,7 +138,7 @@ export default function InfiniteScroll({
           transform: getTiltTransform()
         }}>
         {items?.map((item, i) => {
-          return !!item?.status && (
+          return (
             <div
               className="flex flex-col items-center justify-center gap-[1vw] p-[1vw] text-[1vw] font-semibold text-center border border-white-500/20 rounded-[15px] select-none box-border relative"
               key={i}

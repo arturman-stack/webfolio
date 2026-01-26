@@ -10,7 +10,7 @@ import LanguagesSkeleton from "@/components/ui/skeletons/languages/LanguagesSkel
 import {AiOutlineLoading3Quarters} from "react-icons/ai";
 import GlassSurface from "@/components/bits/GlassSurface";
 
-function Languages() {
+function Languages({className}) {
 	const {i18n} = useTranslation();
 	const locale = i18n.language;
 	const [open, setOpen] = useState(false);
@@ -69,7 +69,7 @@ function Languages() {
 	};
 
 	return (
-		<div className="relative language-menu">
+		<div className={`relative language-menu ${className}`}>
 			{/* Active language (Burger style button) */}
 			{!activeLang ? <LanguagesSkeleton/> : (
 				<button

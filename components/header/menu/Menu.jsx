@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Translation } from "@/utils/translation";
 
-const Menu = ({ data }) => {
+const Menu = ({ data, className }) => {
   const { menu } = data;
   const [activeSection, setActiveSection] = useState('');
 
@@ -49,7 +49,7 @@ const Menu = ({ data }) => {
   }, [menu]);
 
   return (
-    <div className="h-full w-max flex items-center relative">
+    <div className={`h-full w-max flex items-center relative ${className}`}>
       <nav className="w-full h-full">
         <ul className="h-full flex justify-start gap-[1vw] font-normal">
           {menu?.map(({ id, translation, link, status }) => {
@@ -61,17 +61,17 @@ const Menu = ({ data }) => {
                 <Link
                   href={link || `#`}
                   className={`group h-[1vw] flex items-center text-black-500 no-underline 
-                    ${isActive ? 'text-gray-600' : 'text-white-600'}`}
+                    ${isActive ? 'styled-text-gradient' : 'text-white-600'}`}
                 >
                   <span className="relative h-[1vw] overflow-hidden mobile:h-[3vw]">
                     <span
                       className="flex flex-col transition-transform duration-700 ease group-hover:-translate-y-[1vw] cursor-pointer mix-blend-exclusion mobile:group-hover:-translate-y-[3vw]">
                       <span
-                        className="block text-[1vw] font-normal leading-[1vw] origin-right transition-transform duration-700 group-hover:rotate-[20deg] cursor-pointer mobile:text-[3vw] mobile:leading-[3vw]">
+                        className={`${isActive ? 'styled-text-gradient font-bold' : 'text-white-600 font-bold'} block text-[1vw] leading-[1vw] origin-right transition-transform duration-700 group-hover:rotate-[20deg] cursor-pointer mobile:text-[2.5vw] mobile:leading-[3vw]`}>
                         {title}
                       </span>
                       <span
-                        className="block text-[1vw] font-normal leading-[1vw] origin-left rotate-[20deg] transition-transform duration-700 group-hover:rotate-0 cursor-pointer mobile:text-[3vw] mobile:leading-[3vw]">
+                        className={`${isActive ? 'styled-text-gradient font-bold' : 'text-white-600 font-bold'} block text-[1vw] leading-[1vw] origin-left rotate-[20deg] transition-transform duration-700 group-hover:rotate-0 cursor-pointer mobile:text-[2.5vw] mobile:leading-[3vw]`}>
                         {title}
                       </span>
                     </span>
