@@ -13,7 +13,7 @@ function Info({data}) {
 	return (
 		<section className="pt-[2vw] pb-[5vw] flex flex-col items-center gap-[2vw] relative mobile:pt-[4vw] mobile:pb-[10vw] mobile:gap-[3vw]">
 			<ScrollFloat textClassName="text-[3vw] mobile:text-[6vw]">{title}</ScrollFloat>
-			<p className="w-4/5 text-center text-[1.1vw] mobile:text-[3.5vw]">{description}</p>
+			<p className="w-3/5 text-center text-[1.1vw] mobile:text-[3.5vw]">{description}</p>
 
 			{/* Line Gradient Style */}
 			<Line />

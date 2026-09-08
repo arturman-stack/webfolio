@@ -167,6 +167,185 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* police loading */
+
+.police-loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1.25rem;
+  width: 100%;
+  background-image: repeating-linear-gradient(
+          135deg,
+          #1a1a1a 0px,
+          #1a1a1a 15px,
+          #000000 15px,
+          #000000 30px
+  );
+}
+
+.police-stripe-bar {
+  position: relative;
+  width: max-content;
+  height: 140px;
+  padding-inline: 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.police-loading-wrapper::before,
+.police-loading-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 25%;
+  background: linear-gradient(to right, #000000, transparent);
+  z-index: 1;
+}
+
+.police-loading-wrapper::before {
+  left: 0;
+}
+
+.police-loading-wrapper::after {
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.police-badge-glow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(
+          circle,
+          rgba(70, 90, 255, 0.35) 0%,
+          rgba(255, 40, 60, 0.25) 55%,
+          transparent 75%
+  );
+  filter: blur(18px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.police-lights {
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.police-light {
+  width: 70px;
+  height: 25px;
+  clip-path: polygon(22% 0%, 78% 0%, 100% 100%, 0% 100%);
+}
+
+.police-light.blue {
+  background: #3b5bff;
+  animation: police-flash-blue 1.2s infinite steps(1, end);
+  box-shadow: 0 0 35px 10px rgba(59, 91, 255, 0.65),
+  inset 0 0 10px rgba(0, 0, 0, 0.8);
+  border-bottom: 2px solid #3b5bff;
+}
+
+.police-light.white {
+  background: #eaeaea;
+  animation: police-flash-white 0.25s infinite steps(1, end);
+  box-shadow: 0 0 35px 10px rgba(255, 255, 255, 0.45),
+  inset 0 0 10px rgba(0, 0, 0, 0.8);
+  border-bottom: 2px solid #eaeaea;
+}
+
+.police-light.red {
+  background: #ff3b3b;
+  animation: police-flash-red 1.2s infinite steps(1, end);
+  box-shadow: 0 0 35px 10px rgba(255, 59, 59, 0.65),
+  inset 0 0 10px rgba(0, 0, 0, 0.8);
+  border-bottom: 2px solid #ff3b3b;
+}
+
+@keyframes police-flash-blue {
+  0%, 5% {
+    box-shadow: 0 0 60px 26px rgba(59, 91, 255, 0.95),
+    inset 0 0 10px rgba(0, 0, 0, 0.8);
+    filter: brightness(1.6);
+  }
+  10%, 15% {
+    box-shadow: 0 0 8px 2px rgba(59, 91, 255, 0.2),
+    inset 0 0 10px rgba(0, 0, 0, 0.8);
+    filter: brightness(0.6);
+  }
+  20%, 25% {
+    box-shadow: 0 0 60px 26px rgba(59, 91, 255, 0.95),
+    inset 0 0 10px rgba(0, 0, 0, 0.8);
+    filter: brightness(1.6);
+  }
+  30%, 100% {
+    box-shadow: 0 0 8px 2px rgba(59, 91, 255, 0.2),
+    inset 0 0 10px rgba(0, 0, 0, 0.8);
+    filter: brightness(0.6);
+  }
+}
+
+@keyframes police-flash-red {
+  0%, 55% {
+    box-shadow: 0 0 8px 2px rgba(255, 59, 59, 0.2),
+    inset 0 0 10px rgba(0, 0, 0, 0.8);
+    filter: brightness(0.6);
+  }
+  60%, 65% {
+    box-shadow: 0 0 60px 26px rgba(255, 59, 59, 0.95),
+    inset 0 0 10px rgba(0, 0, 0, 0.8);
+    filter: brightness(1.6);
+  }
+  70%, 75% {
+    box-shadow: 0 0 8px 2px rgba(255, 59, 59, 0.2),
+    inset 0 0 10px rgba(0, 0, 0, 0.8);
+    filter: brightness(0.6);
+  }
+  80%, 85% {
+    box-shadow: 0 0 60px 26px rgba(255, 59, 59, 0.95),
+    inset 0 0 10px rgba(0, 0, 0, 0.8);
+    filter: brightness(1.6);
+  }
+  90%, 100% {
+    box-shadow: 0 0 8px 2px rgba(255, 59, 59, 0.2),
+    inset 0 0 10px rgba(0, 0, 0, 0.8);
+    filter: brightness(0.6);
+  }
+}
+
+@keyframes police-flash-white {
+  0%, 100% {
+    box-shadow: 0 0 50px 20px rgba(255, 255, 255, 0.85),
+    inset 0 0 10px rgba(0, 0, 0, 0.8);
+    filter: brightness(1.5);
+  }
+  50% {
+    box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.3),
+    inset 0 0 10px rgba(0, 0, 0, 0.8);
+    filter: brightness(0.8);
+  }
+}
+
+.police-loading-text {
+  position: relative;
+  align-self: center;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  font-size: 0.95rem;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+  z-index: 2;
+}
+
 /* shake animation */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }

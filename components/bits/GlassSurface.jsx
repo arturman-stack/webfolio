@@ -163,7 +163,7 @@ const GlassSurface = ({
       return false;
     }
 
-    const div = document.createElement('div');
+    const div = document?.createElement('div');
     div.style.backdropFilter = `url(#${filterId})`;
     return div.style.backdropFilter !== '';
   };
