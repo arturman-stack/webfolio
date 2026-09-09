@@ -355,3 +355,11 @@ body {
 .animate-shake {
   animation: shake 0.5s;
 }
+
+/* Media */
+
+@media (max-width: 600px) {
+  .police-loading-wrapper {
+    align-items: center;
+  }
+}

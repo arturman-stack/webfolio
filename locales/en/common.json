@@ -4,5 +4,13 @@
   "projects": "Project Types",
   "copyright": "All rights reserved.",
   "contactMe": "Contact Me",
-  "loading": "Loading"
+  "loading": "Loading",
+  "name": "Name",
+  "email": "Email address",
+  "message": "Message",
+  "sending": "Sending...",
+  "send_message": "Send Message",
+  "name_required": "Name is invalid",
+  "email_required": "Email address is invalid",
+  "message_required": "Message is invalid"
 }

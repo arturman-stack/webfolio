@@ -4,7 +4,6 @@ import Header from "@/components/header/Header";
 import menu from "@/db/menu/MenuDB";
 import Info from "@/components/info/Info";
 import info from "@/db/info/InfoDB";
-import CreativeLoop from "@/components/ui/CreativeLoop";
 import Projects from "@/components/projects/Projects";
 import projects from "@/db/projects/ProjectsDB";
 import Technologies from "@/components/technologies/Technologies";
@@ -30,7 +29,7 @@ export default function Home() {
       <Projects data={{ projects }} />
       <Technologies data={{ technologies, technologiesDB }} />
       <Contact />
-      <CreativeLoop />
+      {/*<CreativeLoop />*/}
     </main>
   );
 };

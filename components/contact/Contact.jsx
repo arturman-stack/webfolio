@@ -91,7 +91,7 @@ const ContactForm = () => {
       className="flex flex-col items-center gap-[2vw] py-[5vw] relative mobile:w-full mobile:px-[10%] mobile:pb-[10vw] mobile:pt-0"
       id="contact">
       <div
-        className="absolute top-[5vw] left-1/2 -translate-x-1/2 mobile:static mobile:text-center mobile:translate-x-0 mobile:mt-[5vw]">
+        className="mobile:text-center mobile:translate-x-0 mobile:mt-[5vw]">
         <ScrollFloat textClassName="text-[3vw] mobile:text-[6vw]">{t("contactMe")}</ScrollFloat>
       </div>
 
@@ -114,13 +114,13 @@ const ContactForm = () => {
             {...register("name")}
             className={getInputBorderClass(errors.name)}
           />
-          <label className={getLabelClass(watchName, errors.name)}>Name</label>
+          <label className={getLabelClass(watchName, errors.name)}>{t("name")}</label>
           {errors.name && (
             <div className="absolute right-4 top-1/2 transform -translate-y-1/2 group cursor-pointer">
               <AiOutlineInfoCircle className="text-red-500 w-6 h-6"/>
               <div
                 className="absolute right-0 bottom-full mb-1 w-max max-w-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-red-500 text-white text-xs rounded px-2 py-1 z-10 pointer-events-none">
-                {errors.name.message}
+                {t("name_required")}
               </div>
             </div>
           )}
@@ -133,13 +133,13 @@ const ContactForm = () => {
             {...register("email")}
             className={getInputBorderClass(errors.email)}
           />
-          <label className={getLabelClass(watchEmail, errors.email)}>Email</label>
+          <label className={getLabelClass(watchEmail, errors.email)}>{t("email")}</label>
           {errors.email && (
             <div className="absolute right-4 top-1/2 transform -translate-y-1/2 group cursor-pointer">
               <AiOutlineInfoCircle className="text-red-500 w-6 h-6"/>
               <div
                 className="absolute right-0 bottom-full mb-1 w-max max-w-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-red-500 text-white text-xs rounded px-2 py-1 z-10 pointer-events-none">
-                {errors.email.message}
+                {t("email_required")}
               </div>
             </div>
           )}
@@ -152,13 +152,13 @@ const ContactForm = () => {
             {...register("message")}
             className={`!rounded-3xl resize-none ${getInputBorderClass(errors.message)}`}
           />
-          <label className={getLabelClass(watchMessage, errors.message)}>Message</label>
+          <label className={getLabelClass(watchMessage, errors.message)}>{t("message")}</label>
           {errors.message && (
             <div className="absolute right-4 top-[1.5rem] transform -translate-y-1/2 group cursor-pointer">
               <AiOutlineInfoCircle className="text-red-500 w-6 h-6"/>
               <div
                 className="absolute right-0 bottom-full mb-1 w-max max-w-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-red-500 text-white text-xs rounded px-2 py-1 z-10 pointer-events-none">
-                {errors.message.message}
+                {t("message_required")}
               </div>
             </div>
           )}
@@ -170,7 +170,7 @@ const ContactForm = () => {
           disabled={isSubmitting}
           className="w-full text-white-500 px-4 py-2 rounded-full shadow-inner shadow-gray-400 border border-gray-100 transition-all duration-300 hover:bg-white-500 hover:text-black-500 hover:shadow-black-500 hover:border-black-500 disabled:opacity-50"
         >
-          {isSubmitting ? "Sending..." : "Send Message"}
+          {isSubmitting ? t("sending") : t("send_message")}
         </button>
       </form>
 
