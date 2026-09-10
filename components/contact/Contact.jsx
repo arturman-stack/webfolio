@@ -4,11 +4,12 @@ import React, {useState, useEffect} from "react";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import {useTranslation} from "react-i18next";
 import {AiOutlineInfoCircle} from "react-icons/ai";
 import Line from "@/components/ui/Line";
 import ScrollFloat from "@/components/bits/ScrollFloat";
+import {useNotification} from "@/providers/NotificationProvider";
 
 // Validation schema
 const schema = yup.object().shape({
@@ -19,6 +20,7 @@ const schema = yup.object().shape({
 
 const ContactForm = () => {
   const {t} = useTranslation();
+  const {notify} = useNotification();
   const {
     register,
     handleSubmit,
@@ -30,9 +32,7 @@ const ContactForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const [status, setStatus] = useState(null); // null | "success" | "error"
-  const [statusMessage, setStatusMessage] = useState("");
-  const [shakeFields, setShakeFields] = useState({}); // track shake per field
+  const [shakeFields, setShakeFields] = useState({});
 
   const watchName = watch("name");
   const watchEmail = watch("email");
@@ -44,34 +44,39 @@ const ContactForm = () => {
     else if (errors.email) setFocus("email"), setShakeFields({email: true});
     else if (errors.message) setFocus("message"), setShakeFields({message: true});
 
-    const timeout = setTimeout(() => setShakeFields({}), 500); // remove shake
+    const timeout = setTimeout(() => setShakeFields({}), 500);
     return () => clearTimeout(timeout);
   }, [errors, setFocus]);
 
-  const onSubmit = async (data) => {
-    setStatus(null);
-    try {
-      await emailjs.send(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
-        {
-          from_name: data.name,
-          from_email: data.email,
-          message: data.message,
-          to_email: "mrteyanarturh-2@aspu.am",
-        },
-        "YOUR_USER_ID"
-      );
+  // Format current send time as dd:mm:yyyy and hh:mm:ss
+  const pad = (n) => String(n).padStart(2, "0");
+  const getFormattedDateTime = () => {
+    const now = new Date();
+    const date = `${pad(now.getDate())}.${pad(now.getMonth() + 1)}.${now.getFullYear()}`;
+    const time = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+    return {date, time};
+  };
 
-      setStatus("success");
-      setStatusMessage("Message sent successfully!");
+  const onSubmit = async (data) => {
+    try {
+      const {date, time} = getFormattedDateTime();
+      await emailjs.send(
+        "service_npus0fm", // service id
+        "template_pz83hrm", // template id
+        {
+          from_name: data?.name,
+          from_email: data?.email,
+          message: data?.message,
+          date,
+          time,
+          to_email: "mrteyanarturh-2@aspu.am"
+        },
+        {publicKey: "SZltocOmzEIP7uLsF"} // public key
+      );
+      notify({type: 'success', title: t('successMessage')});
       reset();
-      setTimeout(() => setStatus(null), 5000);
     } catch (error) {
-      console.error(error);
-      setStatus("error");
-      setStatusMessage("Failed to send message. Please try again later.");
-      setTimeout(() => setStatus(null), 5000);
+      notify({type: 'error', title: t('failedMessage')});
     }
   };
 
@@ -96,17 +101,6 @@ const ContactForm = () => {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-[500px] w-full mx-auto p-4 space-y-6">
-        {/* Status message */}
-        {status && (
-          <div
-            className={`p-3 rounded text-white transition-opacity duration-500 ${
-              status === "success" ? "bg-green-500" : "bg-red-500"
-            } opacity-100`}
-          >
-            {statusMessage}
-          </div>
-        )}
-
         {/* Name */}
         <div className={`mb-4 relative ${shakeFields.name ? "animate-shake" : ""}`}>
           <input
@@ -168,7 +162,7 @@ const ContactForm = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full text-white-500 px-4 py-2 rounded-full shadow-inner shadow-gray-400 border border-gray-100 transition-all duration-300 hover:bg-white-500 hover:text-black-500 hover:shadow-black-500 hover:border-black-500 disabled:opacity-50"
+          className="w-full text-white-500 p-4 text-[1vw] rounded-full shadow-inner shadow-gray-400 border border-gray-100 transition-all duration-300 hover:bg-white-500 hover:text-black-500 hover:shadow-black-500 hover:border-black-500 disabled:opacity-50 mobile:text-[2.5vw]"
         >
           {isSubmitting ? t("sending") : t("send_message")}
         </button>

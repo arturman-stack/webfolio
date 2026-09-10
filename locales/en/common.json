@@ -1,6 +1,7 @@
 {
   "title": "Artur Mrteyan | Home",
-  "creative_title": "Be ✦ Creative ✦ Be ✦ Creative ✦",
+  "creator": "Artur Mrteyan",
+  "creative_title": "Be Creative",
   "projects": "Project Types",
   "copyright": "All rights reserved.",
   "contactMe": "Contact Me",
@@ -12,5 +13,7 @@
   "send_message": "Send Message",
   "name_required": "Name is invalid",
   "email_required": "Email address is invalid",
-  "message_required": "Message is invalid"
+  "message_required": "Message is invalid",
+  "successMessage": "Your message has been sent successfully.",
+  "failedMessage": "Failed to send your message. Please try again."
 }

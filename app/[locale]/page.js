@@ -11,7 +11,7 @@ import {technologies, technologiesDB} from "@/db/technologies/TechnologiesDB";
 import Contact from "@/components/contact/Contact";
 
 const title_am = "Արթուր Մրտեյան";
-const title_en = "Arthur Mrteyan";
+const title_en = "Artur Mrteyan";
 const title_ru = "Артур Мртеян";
 
 export async function generateMetadata({ params }) {

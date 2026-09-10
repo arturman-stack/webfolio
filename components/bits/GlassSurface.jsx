@@ -263,6 +263,8 @@ const GlassSurface = ({
     ? 'focus-visible:outline-2 focus-visible:outline-[#0A84FF] focus-visible:outline-offset-2'
     : 'focus-visible:outline-2 focus-visible:outline-[#007AFF] focus-visible:outline-offset-2';
 
+  console.clear();
+
   return (
     <div
       ref={containerRef}
