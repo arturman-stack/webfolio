@@ -11,11 +11,13 @@ const i18nNamespaces = ['common']
 export default async function RootLayout({children, params}) {
   const {locale} = await params;
 
-  const title_am = "Արթուր Մրտեյան";
-  const title_en = "Artur Mrteyan";
-  const title_ru = "Артур Мртеян";
+  const titles = {
+    am: "Արթուր Մրտեյան",
+    en: "Artur Mrteyan",
+    ru: "Артур Мртеян",
+  };
 
-  const title = locale === "en" ? title_en : locale === "ru" ? title_ru : title_am;
+  const title = titles[locale];
 
   const {resources} = await initTranslations(locale, ['common'])
 

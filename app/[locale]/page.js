@@ -10,14 +10,16 @@ import Technologies from "@/components/technologies/Technologies";
 import {technologies, technologiesDB} from "@/db/technologies/TechnologiesDB";
 import Contact from "@/components/contact/Contact";
 
-const title_am = "Արթուր Մրտեյան";
-const title_en = "Artur Mrteyan";
-const title_ru = "Артур Мртеян";
-
 export async function generateMetadata({ params }) {
   const { locale } = await params;
 
-  return locale === "en" ? title_en : locale === "ru" ? title_ru : title_am;
+  const titles = {
+    am: "Արթուր Մրտեյան",
+    en: "Artur Mrteyan",
+    ru: "Артур Мртеян",
+  };
+
+  return titles[locale];
 }
 
 export default function Home() {

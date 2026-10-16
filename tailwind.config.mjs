@@ -96,6 +96,7 @@ export default {
   			'700': 'hsla(0,0%,100%,0.82)'
   		},
   		red: {
+  			'400': '#e8241b',
   			'500': 'var(--primary-negative)'
   		},
   		gray: {

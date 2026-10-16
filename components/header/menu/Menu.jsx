@@ -60,8 +60,7 @@ const Menu = ({ data, className }) => {
               <li key={id} className="h-full flex justify-center items-center">
                 <Link
                   href={link || `#`}
-                  className={`group h-[1vw] flex items-center text-black-500 no-underline 
-                    ${isActive ? 'styled-text-gradient' : 'text-white-600'}`}
+                  className="group h-[1vw] flex items-center text-black-500 no-underline"
                 >
                   <span className="relative h-[1vw] overflow-hidden mobile:h-[3vw]">
                     <span

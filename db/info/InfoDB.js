@@ -1,4 +1,4 @@
-const startDate = new Date(2022, 11, 1); // 01.12.2023 (months 0-based)
+const startDate = new Date(2022, 6, 1); // 01.07.2022 (months 0-based)
 
 function getYearsFlooredToHalf_byMs(start = startDate, now = new Date()) {
 	const msInYear = 1000 * 60 * 60 * 24 * 365.25; // accounts for leap years roughly
@@ -15,9 +15,21 @@ const InfoDB = {
 	id: 1,
 	status: 1,
 	translation: [
-		{name: "Իմ Մասին", description: `Ես Front-End Վեբ Ծրագրավորող եմ՝ React.js, Next.js, TypeScript և Tailwind CSS-ի միջոցով արագ արձագանքող, մասշտաբային հավելվածներ ստեղծելու ${year}+ տարվա գործնական փորձով։ Ես կենտրոնանում եմ մաքուր կոդի և ինտուիտիվ օգտագործողի ինտերֆեյսների ստեղծման վրա։`, key: 'am'},
-		{name: "About Me", description: `I’m a Front-End Web Developer with ${year}+ years of hands-on experience building responsive, scalable applications using React.js, Next.js, TypeScript, and Tailwind CSS. I focus on creating clean code and intuitive user interfaces.`, key: 'en'},
-		{name: "Обо Мне", description: `Я Front-End Веб-разработчик с более чем ${year} практическим опытом создания адаптивных масштабируемых приложений с использованием React.js, Next.js, TypeScript и Tailwind CSS. Я стремлюсь создавать чистый код и интуитивно понятные пользовательские интерфейсы.`, key: 'ru'},
+		{
+			name: "Իմ Մասին",
+			description: `Front-End ծրագրավորող եմ՝ JavaScript, TypeScript, React.js և Next.js-ի միջոցով ժամանակակից, մասշտաբային և բարձր արտադրողականությամբ վեբ հավելվածներ ստեղծելու ${year}+ տարվա փորձով։ IT ոլորտ եմ մտել մինչև AI գործիքների լայն տարածումը, ուստի իմ ինժեներական հիմքը կառուցել եմ նախ և առաջ հիմունքների վրա, իսկ այսօր այդ հիմքը զուգակցում եմ ժամանակակից AI գործիքների հետ՝ ավելի արագ աշխատելու՝ առանց որակի նկատմամբ վերահսկողությունը կորցնելու։ Կենտրոնանում եմ մաքուր ճարտարապետության, հարմարվողական և հասանելի UI-ի, բազմալեզու ինտերֆեյսների և արտադրողականության վրա։ Փորձ ունեմ արտադրանքի ամբողջ ցիկլում՝ գաղափարից մինչև տեղակայում, ներառյալ authentication, վճարային ինտեգրացիաներ, SEO և բարդ ֆիլտրացիա։`,
+			key: 'am'
+		},
+		{
+			name: "About Me",
+			description: `Front-End Developer with ${year}+ years of experience building modern, scalable, and high-performance web applications with JavaScript, TypeScript, React.js, and Next.js. I entered the IT industry before AI tools became mainstream, so I built my engineering foundations on fundamentals first, and I now combine that foundation with modern AI tools to work faster without losing control of quality. Focused on clean architecture, responsive and accessible UI, multilingual interfaces, and performance. Experienced in the full product cycle, from concept to deployment, including authentication, payment integrations, SEO, and complex filtering.`,
+			key: 'en'
+		},
+		{
+			name: "Обо Мне",
+			description: `Front-End разработчик с опытом более ${year} лет в создании современных, масштабируемых и высокопроизводительных веб-приложений на JavaScript, TypeScript, React.js и Next.js. Я пришёл в IT до того, как AI-инструменты стали массовыми, поэтому сначала выстроил инженерный фундамент на базовых знаниях, а сегодня сочетаю его с современными AI-инструментами, чтобы работать быстрее, не теряя контроля над качеством. Фокусируюсь на чистой архитектуре, адаптивном и доступном UI, многоязычных интерфейсах и производительности. Имею опыт полного цикла разработки продукта, от идеи до деплоя, включая аутентификацию, платёжные интеграции, SEO и сложную фильтрацию.`,
+			key: 'ru'
+		},
 	]
 };
 
